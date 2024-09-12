@@ -1,0 +1,10 @@
+README for
+
+
+ISSUES:
+1. Revese ground check - for my jump mechanic, I decided to create a method that would check if the player is on the ground. I did this by sending a sphere cast to the players feet and depending on whether
+or not the player is touching the ground, the check will adjust accordingly. Soomehow, this was easier said then done as for some reason, UNity was throwing a wrench into my work flow and making me play doctor
+House. The solution, I had to change the logic on the if statement so that if the condition is not true, than the check is true. (I already lost a couple brain cells when that solution worked, but the check
+now works and "As long as it works that's what matters" - Lixian, LixianTV)
+2.
+3.
