@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
         //ground check set up
         originDistance = new Vector3(transform.position.x, transform.position.y - groundDistance, transform.position.z);
-        //Debug.Log(originDistance);
         GroundCheck();
 
         if (Input.GetButton("Jump"))
@@ -51,8 +50,6 @@ public class PlayerMovement : MonoBehaviour
                 check_Grounded = false;
             }
         }
-
-        
     }
 
     void GroundCheck()
