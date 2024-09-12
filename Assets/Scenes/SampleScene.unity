@@ -293,7 +293,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &78662628
 CapsuleCollider:
@@ -845,9 +845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d05ba6d567bb741876f8864886fa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTimer: 0
+  cooldownTimer: 0.35
   animor: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!95 &1811908898
 Animator:
   serializedVersion: 5
@@ -861,7 +860,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: a46e70e35170fa54193b675e6aed7169, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
