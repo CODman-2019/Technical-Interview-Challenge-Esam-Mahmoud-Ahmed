@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - P_Attack
+  - Ground
+  - EnemyPatrol
   layers:
   - Default
   - TransparentFX
