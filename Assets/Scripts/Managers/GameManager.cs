@@ -91,7 +91,12 @@ public class GameManager : MonoBehaviour
     //load game over 
     public void GameOver()
     {
-        UIManager.uI.OpenGameOverScreen();
+        UIManager.uI.OpenGameOverScreen(0);
+    }
+
+    public void GameWin(int goal)
+    {
+        UIManager.uI.OpenGameOverScreen(goal);
     }
 
     //reset level
