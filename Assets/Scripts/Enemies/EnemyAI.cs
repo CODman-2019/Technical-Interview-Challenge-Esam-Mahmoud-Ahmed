@@ -49,11 +49,14 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentState == state.patrol)
+        if (!GameManager.gameManager.IsGamePause())
         {
-            if(Vector3.Distance(transform.position, patrolsPointObjects[patrolCounter].transform.position) < patrolPointDistance)
+            if (currentState == state.patrol)
             {
-                ChangeToNextPatrolPoint();
+                if (Vector3.Distance(transform.position, patrolsPointObjects[patrolCounter].transform.position) < patrolPointDistance)
+                {
+                    ChangeToNextPatrolPoint();
+                }
             }
         }
     }

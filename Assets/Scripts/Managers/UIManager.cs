@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
         if(uI == null)
         {
             uI = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this);
         }
         else Destroy(this.gameObject);
     }
@@ -28,7 +29,9 @@ public class UIManager : MonoBehaviour
         currentScreen = titleScreen;
         playerScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
     }
+
 
     public void OpenTitleScreen()
     {

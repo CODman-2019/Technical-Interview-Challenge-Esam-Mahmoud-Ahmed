@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float      jumpForce;
     [SerializeField] private float      groundCheckRaidius;
     [SerializeField] private LayerMask  groundMask;
+    [SerializeField] private float cooldownTimer;
+    [SerializeField] private Animator animor;
+
 
     private Rigidbody                   rb;
     private Vector3                     originDistance;
@@ -32,24 +35,34 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //MOVEMENT
-        player_ForwardMovement = Input.GetAxisRaw("Vertical") * player_Speed;
-        player_SideMovement = Input.GetAxisRaw("Horizontal") * player_Speed;
-
-        rb.velocity = new Vector3(player_SideMovement, rb.velocity.y, player_ForwardMovement);
-
-        //ground check set up
-        originDistance = new Vector3(transform.position.x, transform.position.y - groundDistance, transform.position.z);
-        GroundCheck();
-
-        if (Input.GetButton("Jump"))
+        if (!GameManager.gameManager.IsGamePause())
         {
-            if(check_Grounded)
+            //MOVEMENT
+            player_ForwardMovement = Input.GetAxisRaw("Vertical") * player_Speed;
+            player_SideMovement = Input.GetAxisRaw("Horizontal") * player_Speed;
+
+            rb.velocity = new Vector3(player_SideMovement, rb.velocity.y, player_ForwardMovement);
+
+            //ground check set up
+            originDistance = new Vector3(transform.position.x, transform.position.y - groundDistance, transform.position.z);
+            GroundCheck();
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-                check_Grounded = false;
+                if(check_Grounded)
+                {
+                    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                    check_Grounded = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                //Debug.Log("Attack");
+                animor.SetTrigger("Attack");
+                StartCoroutine(Resetanim());
             }
         }
+      
     }
 
     void GroundCheck()
@@ -67,6 +80,14 @@ public class PlayerMovement : MonoBehaviour
                 check_Grounded = false;
         }
     }
+
+    IEnumerator Resetanim()
+    {
+        yield return new WaitForSeconds(cooldownTimer);
+        animor.ResetTrigger("Attack");
+        //Debug.Log("reset complete");
+    }
+
     private void OnDrawGizmos()
     {
         //Gizmos.color = Color.yellow; 
