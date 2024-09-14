@@ -2,7 +2,7 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "Controller",
+            "name": "Character",
             "id": "62dfb459-1a2b-4812-8e1e-0fc8d99a6b1e",
             "actions": [
                 {
@@ -15,27 +15,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "VerticalMovement",
-                    "type": "Value",
-                    "id": "2afdb918-82c5-43b6-b628-6fc5f1d9cb27",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "HorizontalMovement",
+                    "name": "Attack",
                     "type": "Button",
-                    "id": "69c3ed4e-8c15-4182-9903-03ad7c44ee63",
+                    "id": "2cfed2ba-eda7-48fe-946c-9e809ec843bc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "796e918e-5b13-4b52-929e-e971f62f0451",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Dash",
                     "type": "Button",
-                    "id": "2cfed2ba-eda7-48fe-946c-9e809ec843bc",
+                    "id": "8e97a228-ba38-4e53-b8df-fd3c9d72d0a2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -55,79 +55,107 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "ce9781b7-3d62-4947-97b0-c0c948d5040f",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "5b1a2edf-e78e-4bb3-92be-2c3e5c61fc44",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "VerticalMovement",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "4c1ea659-2866-46c0-84de-46bdd9c1528c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "92e0cc29-2732-48d5-a24c-d3cd724119bc",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "VerticalMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "3df695f9-1da2-4f64-adfc-c7aac8ec59fa",
+                    "name": "up",
+                    "id": "4860ad94-84bb-49ee-89ef-ed5852f813b8",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "VerticalMovement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "edcc75eb-0bce-4c7a-ad41-7a7e28b0465b",
-                    "path": "1DAxis",
+                    "name": "down",
+                    "id": "9d6d8b74-78ac-4dbf-8d3b-d87fbce5f64b",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HorizontalMovement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "negative",
-                    "id": "14c19bed-b7ed-45af-a935-5fa7c6fe7d3d",
+                    "name": "left",
+                    "id": "6f01e6af-fab7-41c3-9c3e-4a09266ee62b",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HorizontalMovement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "c8f7df74-8c4e-419a-bb6c-9fc514e098e2",
+                    "name": "right",
+                    "id": "580dae7a-f2e3-4e29-923f-fb6876f80e84",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HorizontalMovement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "5b1a2edf-e78e-4bb3-92be-2c3e5c61fc44",
-                    "path": "<Mouse>/rightButton",
+                    "id": "30118051-b2d3-4ad4-8997-4a8939d46a5c",
+                    "path": "<Keyboard>/rightShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "780f980d-f769-4062-82d9-9571c3d3ce7f",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "5679877c-17ad-41ee-a05c-093439fb491e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "300954f7-4ed7-4c4f-bb0a-18452860a52e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

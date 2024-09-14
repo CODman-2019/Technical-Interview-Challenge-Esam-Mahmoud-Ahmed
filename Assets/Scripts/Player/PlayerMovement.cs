@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float      player_Speed;
-    [SerializeField] private float      groundDistance;
-    [SerializeField] private float      jumpForce;
-    [SerializeField] private float      groundCheckRaidius;
-    [SerializeField] private LayerMask  groundMask;
-    [SerializeField] private float cooldownTimer;
-    [SerializeField] private Animator animor;
+    [SerializeField] private float          player_Speed;
+    [SerializeField] private float          groundDistance;
+    [SerializeField] private float          jumpForce;
+    [SerializeField] private float          groundCheckRaidius;
+    [SerializeField] private LayerMask      groundMask;
+    [SerializeField] private float          cooldownTimer;
+    [SerializeField] private Animator       animor;
+    [SerializeField] private InputAction    playerControls;
 
 
-    private Rigidbody                   rb;
-    private Vector3                     originDistance;
-    private float                       player_ForwardMovement;
-    private float                       player_SideMovement;
-    private bool                        check_Grounded;
+    private Rigidbody                       rb;
+    private Vector3                         originDistance;
+    private float                           player_ForwardMovement;
+    private float                           player_SideMovement;
+    private bool                            check_Grounded;
 
     private RaycastHit groundCheck;
 

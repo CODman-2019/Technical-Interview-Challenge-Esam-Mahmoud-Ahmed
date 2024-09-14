@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject     playerScreen;
     [SerializeField] private GameObject     pauseScreen;
     [SerializeField] private GameObject     gameOverScreen;
+    [SerializeField] private TMP_Text       gameOverText;
 
     private GameObject currentScreen;
 
@@ -54,10 +55,21 @@ public class UIManager : MonoBehaviour
         currentScreen.SetActive(true);
     }
 
-    public void OpenGameOverScreen()
+    public void OpenGameOverScreen(int ending)
     {
         currentScreen.SetActive(false);
+        ChangeGameOverText(ending);
         currentScreen = gameOverScreen;
         currentScreen.SetActive(true);
+    }
+
+    private void ChangeGameOverText(int outcome)
+    {
+        switch(outcome)
+        {
+            case 0:
+                gameOverText.text = "You Lose, try again?";
+                break;
+        }
     }
 }

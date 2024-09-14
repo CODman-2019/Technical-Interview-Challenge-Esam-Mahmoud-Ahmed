@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-   public static GameManager gameManager;
-
+    public static GameManager gameManager;
+    public InputAction pauseButton;
+    
     private bool gamePause;
+    private bool gameOver;
+
     private void Awake()
     {
         if (gameManager == null)
@@ -19,7 +24,19 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
     }
+    private void OnEnable()
+    {
+        pauseButton.Enable();
+        pauseButton.performed += PauseGame;
+    }
+
+    private void OnDisable()
+    {
+        pauseButton.Disable();
+    }
+
 
     private void Start()
     {
@@ -28,13 +45,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            if (Input.GetButtonDown("Cancel"))
-            {
-                PauseGame();
-            }
-        }
+       
     }
 
     public void LoadLevel(int level)
@@ -51,18 +62,30 @@ public class GameManager : MonoBehaviour
 
     public bool IsGamePause() { return gamePause; }
 
-    public void PauseGame()
+    private void PauseGame(InputAction.CallbackContext context)
     {
-        UIManager.uI.OpenPauseScreen();
-        gamePause = true;
-        //Time.timeScale = 0f;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Debug.Log("pause initiated");
+            if (!gamePause)
+            {
+                UIManager.uI.OpenPauseScreen();
+                gamePause = true;
+                Debug.Log("pausee");
+            }
+            else
+            {
+                UnpauseGame();
+            }
+        }
+
     }
 
     public void UnpauseGame()
     {
         UIManager.uI.OpenPlayerHUD();
         gamePause = false;
-        //Time.timeScale = 1f;
+        Debug.Log("unpaused");
     }
 
     //load game over 
