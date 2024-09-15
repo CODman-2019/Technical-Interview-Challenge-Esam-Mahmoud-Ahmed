@@ -353,6 +353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 2
   patrolPointDistance: 0.5
+  playerDetectionDistance: 10
+  playerEscapeDistance: 15
   agent: {fileID: 23228370}
   playerTarget: {fileID: 78662625}
 --- !u!54 &23228369
@@ -1069,7 +1071,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1272,7 +1274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1465371445
 MonoBehaviour:
   m_ObjectHideFlags: 0

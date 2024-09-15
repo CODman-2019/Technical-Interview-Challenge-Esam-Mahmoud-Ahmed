@@ -19,15 +19,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (gameManager == null)
+        if (gameManager != null)
         {
-            gameManager = this;
-            menuControls = new MenuControls();
-            DontDestroyOnLoad(this);
+            DestroyImmediate(this);
         }
         else
         {
-            Destroy(this.gameObject);
+            gameManager = this;
+            if(menuControls == null)
+            menuControls = new MenuControls();
+            //DontDestroyOnLoad(this);
         }
 
     }
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
     }
 
     public bool IsGamePause() { return gamePause; }
+    public bool IsGameOver()  {  return gameOver; }
 
     private void PauseGame(InputAction.CallbackContext context)
     {

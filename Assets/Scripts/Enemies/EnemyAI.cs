@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float          walkingSpeed;
     [SerializeField] private float          patrolPointDistance;
+    [SerializeField] private float          playerDetectionDistance;
+    [SerializeField] private float          playerEscapeDistance;
     [SerializeField] private NavMeshAgent   agent;
     [SerializeField] private GameObject     playerTarget;
 
@@ -24,17 +26,12 @@ public class EnemyAI : MonoBehaviour
     private state                           currentState;
     private int                             patrolCounter;
     private GameObject[]                    patrolsPointObjects;
-    private Rigidbody                       rb;
-
 
     // Start is called before the first frame update
     void Start()
     {
         //setting up state machine
         currentState = state.patrol;
-        //getting rigidbody component
-        rb = GetComponent<Rigidbody>();
-
         agent = GetComponent<NavMeshAgent>();
 
         //patrol setup
@@ -51,12 +48,29 @@ public class EnemyAI : MonoBehaviour
     {
         if (!GameManager.gameManager.IsGamePause())
         {
-            if (currentState == state.patrol)
+            switch (currentState)
             {
-                if (Vector3.Distance(transform.position, patrolsPointObjects[patrolCounter].transform.position) < patrolPointDistance)
-                {
-                    ChangeToNextPatrolPoint();
-                }
+                case state.patrol:
+                    if (Vector3.Distance(transform.position, patrolsPointObjects[patrolCounter].transform.position) < patrolPointDistance)
+                    {
+                        ChangeToNextPatrolPoint();
+                    }
+
+                    if(Vector3.Distance(transform.position, playerTarget.transform.position) < playerDetectionDistance)
+                    {
+                        currentState = state.chase;
+                    }
+
+                    break;
+                case state.chase:
+                    agent.SetDestination(playerTarget.transform.position);
+                    if(Vector3.Distance(transform.position, playerTarget.transform.position) > playerEscapeDistance)
+                    {
+                        Debug.Log("player escaped");
+                        currentState= state.patrol;
+                        agent.SetDestination(patrolsPointObjects[patrolCounter].transform.position);
+                    }
+                    break;
             }
         }
     }
