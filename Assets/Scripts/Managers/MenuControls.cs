@@ -28,7 +28,7 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
             ""id"": ""059725a0-4656-452f-be3e-076398d0ba2c"",
             ""actions"": [
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""pause"",
                     ""type"": ""Button"",
                     ""id"": ""fc6f0e73-d867-4c36-9ae3-01b51725c7a4"",
                     ""expectedControlType"": ""Button"",
@@ -37,7 +37,7 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Reset"",
+                    ""name"": ""reset"",
                     ""type"": ""Button"",
                     ""id"": ""63bc4213-e91b-4e06-a88c-18e304957c7d"",
                     ""expectedControlType"": ""Button"",
@@ -46,7 +46,7 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Title"",
+                    ""name"": ""title"",
                     ""type"": ""Button"",
                     ""id"": ""32122774-e40a-4cfc-a499-4f47a40c9b4b"",
                     ""expectedControlType"": ""Button"",
@@ -63,7 +63,7 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
+                    ""action"": ""pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -74,7 +74,7 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Reset"",
+                    ""action"": ""reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -85,7 +85,7 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Title"",
+                    ""action"": ""title"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -96,9 +96,9 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
 }");
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
-        m_Menus_Pause = m_Menus.FindAction("Pause", throwIfNotFound: true);
-        m_Menus_Reset = m_Menus.FindAction("Reset", throwIfNotFound: true);
-        m_Menus_Title = m_Menus.FindAction("Title", throwIfNotFound: true);
+        m_Menus_pause = m_Menus.FindAction("pause", throwIfNotFound: true);
+        m_Menus_reset = m_Menus.FindAction("reset", throwIfNotFound: true);
+        m_Menus_title = m_Menus.FindAction("title", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,16 +160,16 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
     // Menus
     private readonly InputActionMap m_Menus;
     private List<IMenusActions> m_MenusActionsCallbackInterfaces = new List<IMenusActions>();
-    private readonly InputAction m_Menus_Pause;
-    private readonly InputAction m_Menus_Reset;
-    private readonly InputAction m_Menus_Title;
+    private readonly InputAction m_Menus_pause;
+    private readonly InputAction m_Menus_reset;
+    private readonly InputAction m_Menus_title;
     public struct MenusActions
     {
         private @MenuControls m_Wrapper;
         public MenusActions(@MenuControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pause => m_Wrapper.m_Menus_Pause;
-        public InputAction @Reset => m_Wrapper.m_Menus_Reset;
-        public InputAction @Title => m_Wrapper.m_Menus_Title;
+        public InputAction @pause => m_Wrapper.m_Menus_pause;
+        public InputAction @reset => m_Wrapper.m_Menus_reset;
+        public InputAction @title => m_Wrapper.m_Menus_title;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -179,28 +179,28 @@ public partial class @MenuControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenusActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenusActionsCallbackInterfaces.Add(instance);
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
-            @Reset.started += instance.OnReset;
-            @Reset.performed += instance.OnReset;
-            @Reset.canceled += instance.OnReset;
-            @Title.started += instance.OnTitle;
-            @Title.performed += instance.OnTitle;
-            @Title.canceled += instance.OnTitle;
+            @pause.started += instance.OnPause;
+            @pause.performed += instance.OnPause;
+            @pause.canceled += instance.OnPause;
+            @reset.started += instance.OnReset;
+            @reset.performed += instance.OnReset;
+            @reset.canceled += instance.OnReset;
+            @title.started += instance.OnTitle;
+            @title.performed += instance.OnTitle;
+            @title.canceled += instance.OnTitle;
         }
 
         private void UnregisterCallbacks(IMenusActions instance)
         {
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
-            @Reset.started -= instance.OnReset;
-            @Reset.performed -= instance.OnReset;
-            @Reset.canceled -= instance.OnReset;
-            @Title.started -= instance.OnTitle;
-            @Title.performed -= instance.OnTitle;
-            @Title.canceled -= instance.OnTitle;
+            @pause.started -= instance.OnPause;
+            @pause.performed -= instance.OnPause;
+            @pause.canceled -= instance.OnPause;
+            @reset.started -= instance.OnReset;
+            @reset.performed -= instance.OnReset;
+            @reset.canceled -= instance.OnReset;
+            @title.started -= instance.OnTitle;
+            @title.performed -= instance.OnTitle;
+            @title.canceled -= instance.OnTitle;
         }
 
         public void RemoveCallbacks(IMenusActions instance)

@@ -8,9 +8,8 @@ ADDITIONAL FEATURES:
 
 
 ISSUES:
-1. Reverse ground check - for my jump mechanic, I decided to create a method that would check if the player is on the ground. I did this by sending a sphere cast to the players feet and depending on whether
-or not the player is touching the ground, the check will adjust accordingly. Somehow, this was easier said then done as for some reason, Unity was throwing a wrench into my work flow and making me play doctor
-House. The solution, I had to change the logic on the if statement so that if the condition is not true, than the check is true. (I already lost a couple brain cells when that solution worked, but the check
-now works and "As long as it works that's what matters" - Lixian, LixianTV)
-2.
+1. Reverse ground check - For my jump mechanic, I decided to create a method that would check if the player is on the ground. I did this by sending a sphere cast to the players feet and depending on whether or not the player is touching the ground, the check will adjust accordingly. Somehow, this was easier said then done as for some reason, Unity was throwing a wrench  into my work flow and making me play doctor House. The solution, I had to change the logic on the if statement so that if the condition is not true, than the check is true. (I already lost  a couple brain cells when that solution worked, but the check now works and "As long as it works that's what matters" - Lixian, LixianTV)
+
+2.Unresponsive UI - So for my project I created 2 singleton managers: a game manager and a UI manager. The game manager worked fine, just made it so that it can switch scenes, reset and quit the game. The problems came from the UI, for some unknown reason when ever I change scenes and try to use the pause menu with my mouse (opened by pressing P), the menu and buttons become unresponsive. I figured out that it may have something to do with the transition and I was right about it as the UI sliders would not work either but when you return back to the title screen, everything was fine. I tried to debug the issue first but it came to no avail, even when I switched to the new Input system (yes, I was using the old one that was already installed). I was able to remedy the situation by just having the player to press certain keys while in the pause menu which resolved the issue for the most part but I will look into this issue in the future.
+
 3.

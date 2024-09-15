@@ -8,16 +8,21 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
-    public InputAction pauseButton;
-    
+
     private bool gamePause;
     private bool gameOver;
+
+    private MenuControls menuControls;
+    private InputAction pause;
+    private InputAction reset;
+    private InputAction title;
 
     private void Awake()
     {
         if (gameManager == null)
         {
             gameManager = this;
+            menuControls = new MenuControls();
             DontDestroyOnLoad(this);
         }
         else
@@ -28,24 +33,31 @@ public class GameManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        pauseButton.Enable();
-        pauseButton.performed += PauseGame;
+        pause = menuControls.Menus.pause;
+        reset = menuControls.Menus.reset;
+        title = menuControls.Menus.title;
+
+        if(!pause.enabled)  pause.Enable();
+        if(!reset.enabled)  reset.Enable();
+        if(!title.enabled) title.Enable();
+
+        pause.performed += PauseGame;
+        reset.performed += ResetGame;
+        title.performed += LoadTitleScreen;
     }
 
     private void OnDisable()
     {
-        pauseButton.Disable();
+        pause.Disable();
+        reset.Disable();
+        title.Disable();
     }
 
 
     private void Start()
     {
         gamePause = false;
-    }
-
-    void Update()
-    {
-       
+        gameOver = false;
     }
 
     public void LoadLevel(int level)
@@ -54,10 +66,13 @@ public class GameManager : MonoBehaviour
         UIManager.uI.OpenPlayerHUD();
     }
 
-    public void LoadTitleScreen()
+    public void LoadTitleScreen(InputAction.CallbackContext context)
     {
-        SceneManager.LoadScene(0);
-        UIManager.uI.OpenTitleScreen();
+        if (gamePause || gameOver)
+        {
+            SceneManager.LoadScene(0);
+            UIManager.uI.OpenTitleScreen();
+        }
     }
 
     public bool IsGamePause() { return gamePause; }
@@ -92,17 +107,20 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         UIManager.uI.OpenGameOverScreen(0);
+        gameOver = true;
     }
 
     public void GameWin(int goal)
     {
         UIManager.uI.OpenGameOverScreen(goal);
+        gameOver = true;
     }
 
     //reset level
-    public void Reset()
+    public void ResetGame(InputAction.CallbackContext context)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+        if(gamePause || gameOver)
+            SceneManager.LoadScene(1);
     }
 
     //exit game
