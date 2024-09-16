@@ -22,7 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private GameObject         cameraAnchor;
 
     private Rigidbody                           rb;
-    private Vector3                             originDistance;
+    private Vector3                             groundOrigin;
     private Vector2                             movement;
     private int                                 health;
     private bool                                dashAvail;
@@ -90,7 +90,7 @@ public class PlayerCharacter : MonoBehaviour
             //rb.velocity = Vector3.zero;
 
             //ground check set up
-            originDistance = new Vector3(transform.position.x, transform.position.y - groundDistance, transform.position.z);
+            groundOrigin = new Vector3(transform.position.x, transform.position.y - groundDistance, transform.position.z);
             GroundCheck();
         }
     }
@@ -153,18 +153,20 @@ public class PlayerCharacter : MonoBehaviour
 
     void GroundCheck()
     {
-        if (Physics.SphereCast(originDistance, groundCheckRaidius, Vector3.down, out groundCheck, groundMask))
+        if(Physics.Raycast(transform.position, Vector3.down, groundDistance, groundMask))
         {
-            //Debug.Log("hiting the ground");
-            if (!check_Grounded)
-                check_Grounded = true;
+            Debug.Log("hit ground");
+            check_Grounded = true;
         }
         else
         {
-            //Debug.Log("not hitting the ground");
             if (check_Grounded)
                 check_Grounded = false;
         }
+
+        //if (Physics.SphereCast(groundOrigin, groundCheckRaidius, Vector3.down, out groundCheck, groundMask))
+        //{
+            
     }
 
     IEnumerator ResetDash()
@@ -185,7 +187,5 @@ public class PlayerCharacter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy_Basic_Attack" || other.gameObject.tag == "Enemy_Finisher_Attack")  TakeDamage();
-
-
     }
 }
