@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
             gameManager = this;
             if(menuControls == null)
             menuControls = new MenuControls();
+
             //DontDestroyOnLoad(this);
         }
 
@@ -122,7 +123,10 @@ public class GameManager : MonoBehaviour
     public void ResetGame(InputAction.CallbackContext context)
     {
         if(gamePause || gameOver)
+        {
             SceneManager.LoadScene(1);
+            UIManager.uI.OpenPlayerHUD();
+        }
     }
 
     //exit game
