@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip enemySwing;
     public AudioClip enemyCrush;
 
+    public AudioClip secret;
     public AudioClip gameOver;
     public AudioClip gameEnd;
 
@@ -29,28 +30,31 @@ public class AudioManager : MonoBehaviour
     {
         switch (word)
         {
-            case "jump":
+            case "Jump":
                 listener.PlayOneShot(playerJump);
                 break;
-            case "attack":
+            case "Attack":
                 listener.PlayOneShot(playerSwing);
                 break;
-            case "hit":
-                listener.PlayOneShot(playerJump);
+            case "Hit":
+                listener.PlayOneShot(playerHit);
                 break;
-            case "dash":
+            case "Dash":
                 listener.PlayOneShot(playerDash);
                 break;
-            case "enemyBasic":
+            case "EnemyBasic":
                 listener.PlayOneShot(enemySwing);
                 break;
-            case "enemyFinisher":
+            case "EnemyFinisher":
                 listener.PlayOneShot(enemyCrush);
                 break;
-            case "game_over":
+            case "Secret":
+                listener.PlayOneShot(secret);
+                break;
+            case "GameOver":
                 listener.PlayOneShot(gameOver);
                 break;
-            case "game_end":
+            case "GameEnd":
                 listener.PlayOneShot(gameEnd);
                 break;
         }

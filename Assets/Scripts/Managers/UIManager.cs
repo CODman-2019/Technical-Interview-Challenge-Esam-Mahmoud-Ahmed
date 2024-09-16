@@ -118,10 +118,31 @@ public class UIManager : MonoBehaviour
                 gameOverText.text = "You died, try again?";
                 break;
             case 1:
-                gameOverText.text = "You survived, NICE!";
+                gameOverText.text = "You arrived on time for work!";
                 break;
             case 2:
-                gameOverText.text = "You survived, but your late!";
+                gameOverText.text = "You're late and now FIRED!";
+                break;
+             case 3:
+                gameOverText.text = "You got the milk, mom would be proud";
+                break;
+            case 4:
+                gameOverText.text = "Oh no! The milk spoiled!";
+                break;
+            case 5:
+                gameOverText.text = "You got a FLUFF BALL (a kitten)";
+                break;
+            case 6:
+                gameOverText.text = "Sorry, all kittens have been adopted";
+                break;
+            case 7:
+                gameOverText.text = "You found secret 1";
+                break;
+            case 8:
+                gameOverText.text = "You found Secret 2";
+                break;
+            case 9:
+                gameOverText.text = "You found the SUPER secret";
                 break;
         }
     }

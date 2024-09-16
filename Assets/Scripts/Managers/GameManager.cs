@@ -111,11 +111,13 @@ public class GameManager : MonoBehaviour
     {
         UIManager.uI.OpenGameOverScreen(0);
         gameOver = true;
+        AudioManager.sound.TriggerSound("GameOver");
     }
 
     public void GameWin(int goal)
     {
         UIManager.uI.OpenGameOverScreen(goal);
+        AudioManager.sound.TriggerSound("GameEnd");
         gameOver = true;
     }
 

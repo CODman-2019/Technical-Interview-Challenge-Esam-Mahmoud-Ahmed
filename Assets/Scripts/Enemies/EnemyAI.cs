@@ -138,10 +138,10 @@ public class EnemyAI : MonoBehaviour
         switch(type)
         {
             case 0:
-                AudioManager.sound.TriggerSound("enemyBasic");
+                AudioManager.sound.TriggerSound("EnemyBasic");
                 break;
             case 1:
-                AudioManager.sound.TriggerSound("enemyFinisher");
+                AudioManager.sound.TriggerSound("EnemyFinisher");
             break;
         }
     }

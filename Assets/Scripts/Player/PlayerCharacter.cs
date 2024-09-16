@@ -101,12 +101,14 @@ public class PlayerCharacter : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             check_Grounded = false;
+            AudioManager.sound.TriggerSound("Jump");
         }
     }
 
     private void Attack(InputAction.CallbackContext context)
     {
         animor.SetTrigger("Attack");
+        AudioManager.sound.TriggerSound("Attack");
         StartCoroutine(Resetanim());
     }
 
@@ -129,6 +131,7 @@ public class PlayerCharacter : MonoBehaviour
                 
                 rb.MovePosition(new Vector3(transform.position.x + (xdash * dashDistance), transform.position.y, transform.position.z + (ydash * dashDistance)));
                 dashAvail = false;
+                AudioManager.sound.TriggerSound("Dash");
                 UIManager.uI.ChangeDashIconColor(1);
                 StartCoroutine(ResetDash());
             }
@@ -139,7 +142,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         health--;
         UIManager.uI.UpdatePlayerHealthBar(health);
-        if(health == 0)
+        AudioManager.sound.TriggerSound("Hit");
+        if (health == 0)
         {
             GameManager.gameManager.GameOver();
         }
@@ -149,7 +153,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void GroundCheck()
     {
-        if (!Physics.SphereCast(originDistance, groundCheckRaidius, Vector3.down, out groundCheck, groundMask))
+        if (Physics.SphereCast(originDistance, groundCheckRaidius, Vector3.down, out groundCheck, groundMask))
         {
             //Debug.Log("hiting the ground");
             if (!check_Grounded)
