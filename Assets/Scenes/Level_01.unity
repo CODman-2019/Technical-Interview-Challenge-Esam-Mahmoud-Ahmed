@@ -59782,7 +59782,7 @@ MonoBehaviour:
   goalIndex: 3
   hasTimer: 1
   isWin: 1
-  timeLimit: 39
+  timeLimit: 40
   goalAlternative: 4
 --- !u!43 &1840786252
 Mesh:

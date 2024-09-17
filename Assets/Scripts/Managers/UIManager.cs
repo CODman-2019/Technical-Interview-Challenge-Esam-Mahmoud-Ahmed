@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        currentScreen = titleScreen;
+        currentScreen = playerScreen;
 
         dashIcon.color = dashEnable;
 
@@ -60,8 +60,8 @@ public class UIManager : MonoBehaviour
     public void OpenTitleScreen()
     {
         currentScreen.SetActive(false);
-        currentScreen = titleScreen;
-        currentScreen.SetActive(true);
+        //currentScreen = titleScreen;
+        //currentScreen.SetActive(true);
     }
 
     //HUD UI
