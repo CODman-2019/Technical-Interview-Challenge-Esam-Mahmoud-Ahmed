@@ -8,14 +8,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float          walkingSpeed;
-    [SerializeField] private float          patrolPointDistance;
-    [SerializeField] private float          playerDetectionDistance;
-    [SerializeField] private float          playerEscapeDistance;
-    [SerializeField] private float          playerAttackDistance;
-    [SerializeField] private NavMeshAgent   agent;
-    [SerializeField] private GameObject     playerTarget;
-    [SerializeField]private GameObject[]    patrolsPointObjects;
+    [SerializeField] private float           patrolPointDistance;
+    [SerializeField] private float           playerDetectionDistance;
+    [SerializeField] private float           playerEscapeDistance;
+    [SerializeField] private float           playerAttackDistance;
+    [SerializeField] private bool            patrolreset;
+    [SerializeField] private NavMeshAgent    agent;
+    [SerializeField] private GameObject      playerTarget;
+    [SerializeField] private GameObject[]    patrolsPointObjects;
 
     private Animator anim;
 
@@ -26,9 +26,10 @@ public class EnemyAI : MonoBehaviour
         attack
     };
 
-    private state                           currentState;
-    private int                             patrolCounter;
-    private bool                            canAttack;
+    private state                             currentState;
+    private int                              patrolCounter;
+    private int                              patrolDirection;
+    private bool                             canAttack;
     
 
     // Start is called before the first frame update
@@ -40,6 +41,7 @@ public class EnemyAI : MonoBehaviour
         anim = GetComponent<Animator>();
         //patrol setup
         patrolCounter = 0;
+        patrolDirection = 1;
         
         //finding player character and setting destination to first patrol point
         playerTarget = GameObject.Find("Player");
@@ -85,7 +87,7 @@ public class EnemyAI : MonoBehaviour
                 case state.attack:
 
                     agent.SetDestination(playerTarget.transform.position);
-                    if (playerTarget.GetComponent<PlayerCharacter>().GetHealth() > 1)
+                    if (playerTarget.GetComponent<PlayerCharacter>().GetHealth() > 2)
                     {
                         if (canAttack)
                         {
@@ -128,9 +130,20 @@ public class EnemyAI : MonoBehaviour
 
     private void ChangeToNextPatrolPoint()
     {
-        patrolCounter++;
-        if (patrolCounter >= patrolsPointObjects.Length - 1) patrolCounter = 0;
-            agent.SetDestination(patrolsPointObjects[patrolCounter].transform.position);
+        patrolCounter += patrolDirection;
+        if (patrolCounter == patrolsPointObjects.Length || patrolCounter == -1)
+        {
+            if (patrolreset && patrolCounter == patrolsPointObjects.Length)
+            {
+                patrolCounter = 0;
+            }
+            else
+            {
+                patrolDirection *= -1;
+                patrolCounter += patrolDirection;
+            }
+        }
+        agent.SetDestination(patrolsPointObjects[patrolCounter].transform.position);
     }
 
     private void playSound(int type)

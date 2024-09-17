@@ -145,7 +145,7 @@ public class PlayerCharacter : MonoBehaviour
         AudioManager.sound.TriggerSound("Hit");
         if (health == 0)
         {
-            GameManager.gameManager.GameOver();
+            GameManager.gameManager.GameOver(0);
         }
     }
 
@@ -155,12 +155,12 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, Vector3.down, groundDistance, groundMask))
         {
-            Debug.Log("hit ground");
+            //Debug.Log("hit ground");
             check_Grounded = true;
         }
         else
         {
-            if (check_Grounded)
+            //if (check_Grounded)
                 check_Grounded = false;
         }
 
@@ -174,7 +174,7 @@ public class PlayerCharacter : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashAvail = true;
         UIManager.uI.ChangeDashIconColor(0);
-        Debug.Log("dash reset");
+        //Debug.Log("dash reset");
     }
 
     IEnumerator Resetanim()

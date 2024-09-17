@@ -8,7 +8,7 @@ public class DeathZones : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.gameManager.GameOver();
+            GameManager.gameManager.GameOver(0);
         }
     }
 }

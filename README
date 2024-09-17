@@ -1,4 +1,4 @@
-GAME DESCRIPTION:
+GAME DESCRIPTION - Goal Dashing:
 race to one of many goals to try and get one of several endings. Your attacks have no effect on enemies, avoid them at ALL COST. Avoid the ground and any red shapes or that's game over. explore to find secrets and new paths
 
 INSTRUCTIONS:
@@ -13,7 +13,11 @@ R (while pause/game over) - Reset
 T (While pause/game over) - return to title
 
 ADDITIONAL FEATURES:
-
+- sounds for player actions, enemy attacks, game over and secrets
+- Secrets
+- player dash ability
+- timer
+- multiple goals with endings
 
 ISSUES:
 1. Reverse ground check - For my jump mechanic, I decided to create a method that would check if the player is on the ground. I did this by sending a sphere cast to the players feet and depending on whether or not the player is touching the ground, the check will adjust accordingly. Somehow, this was easier said then done as for some reason, Unity was throwing a wrench  into my work flow and making me play doctor House. The solution, I had to change the logic on the if statement so that if the condition is not true, than the check is true. (I already lost  a couple brain cells when that solution worked, but the check now works and "As long as it works that's what matters" - Lixian, LixianTV)

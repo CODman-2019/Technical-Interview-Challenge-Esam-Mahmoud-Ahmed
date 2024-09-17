@@ -6,6 +6,7 @@ public class LevelGoal : MonoBehaviour
 {
     public int goalIndex;
     public bool hasTimer;
+    public bool isWin;
     public int timeLimit;
     public int goalAlternative;
 
@@ -23,9 +24,10 @@ public class LevelGoal : MonoBehaviour
         {
             if(Time.timeSinceLevelLoad >= timeLimit)
             {
-                Debug.Log("ending change");
+                //Debug.Log("ending change");
                 indexReturn = goalAlternative;
                 hasTimer = false;
+                isWin = false;
             }
         }
     }
@@ -34,7 +36,10 @@ public class LevelGoal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.gameManager.GameWin(indexReturn);
+            if(isWin)
+                GameManager.gameManager.GameWin(indexReturn);
+            else
+                GameManager.gameManager.GameOver(indexReturn);
         }
     }
 }

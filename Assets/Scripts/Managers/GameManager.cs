@@ -107,9 +107,9 @@ public class GameManager : MonoBehaviour
     }
 
     //load game over 
-    public void GameOver()
+    public void GameOver(int index)
     {
-        UIManager.uI.OpenGameOverScreen(0);
+        UIManager.uI.OpenGameOverScreen(index);
         gameOver = true;
         AudioManager.sound.TriggerSound("GameOver");
     }

@@ -10,7 +10,7 @@ public class Breakable : MonoBehaviour
     {
         if (other.CompareTag("P_Attack"))
         {
-            if(!isSecret) { AudioManager.sound.TriggerSound("Secret"); }
+            if(isSecret) { AudioManager.sound.TriggerSound("Secret"); }
 
             Destroy(gameObject);
         }

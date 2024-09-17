@@ -123,7 +123,7 @@ public class UIManager : MonoBehaviour
             case 2:
                 gameOverText.text = "You're late and now FIRED!";
                 break;
-             case 3:
+            case 3:
                 gameOverText.text = "You got the milk, mom would be proud";
                 break;
             case 4:
@@ -142,8 +142,12 @@ public class UIManager : MonoBehaviour
                 gameOverText.text = "You found Secret 2";
                 break;
             case 9:
-                gameOverText.text = "You found the SUPER secret";
+                gameOverText.text = "Come on, don't be like that?";
                 break;
+            case 10:
+                gameOverText.text = "Orange juice gang huh? we can not be friends";
+                break;
+
         }
     }
 }
