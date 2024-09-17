@@ -1,4 +1,4 @@
-GAME DESCRIPTION - Goal Dashing:
+GAME DESCRIPTION - Dash Run:
 race to one of many goals to try and get one of several endings. Your attacks have no effect on enemies, avoid them at ALL COST. Avoid the ground and any red shapes or that's game over. explore to find secrets and new paths
 
 INSTRUCTIONS:
@@ -25,4 +25,3 @@ ISSUES:
 	UPDATE TO ISSUE: Figured out why and not at the same time. I was using a terrain object which caused the reverse effect and when I used a regular cude, that resolved the problem
 
 2.Unresponsive UI - So for my project I created 2 singleton managers: a game manager and a UI manager. The game manager worked fine, just made it so that it can switch scenes, reset and quit the game. The problems came from the UI, for some unknown reason when ever I change scenes and try to use the pause menu with my mouse (opened by pressing P), the menu and buttons become unresponsive. I figured out that it may have something to do with the transition and I was right about it as the UI sliders would not work either but when you return back to the title screen, everything was fine. I tried to debug the issue first but it came to no avail, even when I switched to the new Input system (yes, I was using the old one that was already installed). I was able to remedy the situation by just having the player to press certain keys while in the pause menu which resolved the issue for the most part but I will look into this issue in the future.
-
